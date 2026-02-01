@@ -1,113 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Will you be my Valentine?</title>
-
+  <meta charset="UTF-8">
+  <title>Hi Greta</title>
   <style>
     body {
       margin: 0;
       height: 100vh;
+      background: #f7c7d4;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
       align-items: center;
-      background: #f6c1d1;
-      font-family: Arial, sans-serif;
-      overflow: hidden;
+      justify-content: center;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      max-width: 90%;
     }
 
     h1 {
-      margin-bottom: 40px;
-      color: #111;
-    }
-
-    .buttons {
-      position: relative;
+      margin-bottom: 25px;
     }
 
     #yes {
       font-size: 22px;
-      padding: 16px 36px;
-      background: #e63973;
-      color: white;
+      padding: 15px 35px;
       border: none;
-      border-radius: 30px;
+      border-radius: 40px;
+      background: #ff4d6d;
+      color: white;
       cursor: pointer;
-      transition: transform 0.25s ease;
-      z-index: 2;
+      transition: all 0.3s ease;
     }
 
     #no {
-      font-size: 16px;
-      padding: 10px 20px;
-      background: #ddd;
+      margin-left: 15px;
+      background: transparent;
       border: none;
-      border-radius: 20px;
+      color: #555;
       cursor: pointer;
-      position: absolute;
-      left: 120px;
-      top: 10px;
-      z-index: 1;
+      font-size: 16px;
     }
 
-    .hint {
-      margin-top: 30px;
+    .note {
+      margin-top: 20px;
       font-size: 14px;
-      color: #333;
-      opacity: 0.8;
+      color: #777;
     }
   </style>
 </head>
-
 <body>
 
-  <h1>Will you be my Valentine?</h1>
+  <div class="card">
+    <h1>Hi Greta, will you be my Valentine?</h1>
 
-  <div class="buttons">
     <button id="yes">Yes</button>
     <button id="no">No</button>
+
+    <div class="note">“No” seems a bit shy 😈</div>
   </div>
 
-  <p class="hint">“No” seems a bit shy 😈</p>
+  <!-- 
+  Made with intention, no expectation, just a little hope.
+  This felt worth trying.
+  If you're reading this, hi, G ♥
+  -->
 
   <script>
-    const yesBtn = document.getElementById("yes");
-    const noBtn = document.getElementById("no");
-
+    const yes = document.getElementById("yes");
     let scale = 1;
 
-    noBtn.addEventListener("mouseover", () => {
-      // mover el NO como cobarde
-      const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
-      const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+    yes.addEventListener("click", () => {
+      scale += 0.35;
+      yes.style.transform = `scale(${scale})`;
 
-      noBtn.style.left = x + "px";
-      noBtn.style.top = y + "px";
-
-      // hacer el YES GIGANTE (agresivo)
-      scale += 0.45;
-      yesBtn.style.transform = `scale(${scale})`;
-    });
-
-    yesBtn.addEventListener("click", () => {
-      document.body.innerHTML = `
-        <h1 style="
-          text-align:center;
-          margin-top:40vh;
-          font-size:48px;
-        ">
-          💖 Knew it. 💖
-        </h1>
-      `;
+      if (scale > 5) {
+        yes.innerText = "You know the answer already 😌";
+      }
     });
   </script>
-
-  <!--
-    Made with intention, no expectation, just a little hope.
-    This felt worth trying.
-    If you're reading this, hi, G. ❤️
-  -->
 
 </body>
 </html>
