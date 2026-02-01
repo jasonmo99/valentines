@@ -64,6 +64,21 @@
       transition: opacity 0.3s ease;
     }
 
+    .final {
+      text-align: center;
+    }
+
+    .send-btn {
+      margin-top: 20px;
+      padding: 14px 32px;
+      font-size: 18px;
+      border-radius: 10px;
+      border: none;
+      background-color: #ff4d6d;
+      color: white;
+      cursor: pointer;
+    }
+
     /*
       Made with intention, no expectation, just a little hope. This felt worth trying. If you're reading this, hi, G. ❤️
     */
@@ -88,7 +103,7 @@
     let scale = 1;
 
     function growYes() {
-      scale += 0.35; // crecimiento agresivo y constante
+      scale += 0.35;
       yesBtn.style.transform = `translateX(-50%) scale(${scale})`;
       note.style.opacity = 1;
     }
@@ -111,16 +126,17 @@
     });
 
     yesBtn.addEventListener("click", () => {
-      // pantalla final primero
       document.body.innerHTML = `
-        <h1>Then it’s a date 💘</h1>
+        <div class="final">
+          <h1>Then it’s a date 💘</h1>
+          <button class="send-btn" id="sendBtn">Send</button>
+        </div>
       `;
 
-      // después manda a WhatsApp
-      setTimeout(() => {
+      document.getElementById("sendBtn").addEventListener("click", () => {
         const message = encodeURIComponent("Then it’s a date 💘");
         window.location.href = "https://wa.me/524921262438?text=" + message;
-      }, 1800);
+      });
     });
   </script>
 
