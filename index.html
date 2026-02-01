@@ -100,7 +100,6 @@
       noBtn.style.top = y + "px";
     }
 
-    // cada intento hace que el NO huya y el YES crezca
     noBtn.addEventListener("mouseover", () => {
       moveNo();
       growYes();
@@ -112,9 +111,16 @@
     });
 
     yesBtn.addEventListener("click", () => {
+      // pantalla final primero
       document.body.innerHTML = `
-        <h1>Then it’s a date 💌</h1>
+        <h1>Then it’s a date 💘</h1>
       `;
+
+      // después manda a WhatsApp
+      setTimeout(() => {
+        const message = encodeURIComponent("Then it’s a date 💘");
+        window.location.href = "https://wa.me/524921262438?text=" + message;
+      }, 1800);
     });
   </script>
 
