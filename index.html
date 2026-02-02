@@ -2,141 +2,128 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Valentine?</title>
+  <title>Just a question</title>
+
   <style>
+    * {
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
     body {
-      margin: 0;
       height: 100vh;
+      margin: 0;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
       align-items: center;
-      font-family: Arial, sans-serif;
-      background: #ffffff;
-      overflow: hidden;
+      justify-content: center;
+      background: #fff;
+    }
+
+    .container {
+      text-align: center;
+      position: relative;
+      width: 100%;
+      max-width: 500px;
+      height: 300px;
     }
 
     h1 {
-      margin-bottom: 30px;
-      text-align: center;
-      font-weight: 500;
-    }
-
-    .buttons {
-      position: relative;
-      width: 100%;
-      height: 260px;
+      font-size: 2.2rem;
+      margin-bottom: 60px;
     }
 
     button {
-      padding: 18px 36px;
-      font-size: 20px;
-      cursor: pointer;
+      padding: 14px 30px;
+      font-size: 18px;
       border: none;
-      border-radius: 12px;
+      border-radius: 30px;
+      cursor: pointer;
       position: absolute;
-      transition: transform 0.25s ease, left 0.2s ease, top 0.2s ease;
-      white-space: nowrap;
+      transition: all 0.2s ease;
     }
 
-    #yes {
+    /* BOTONES CENTRADOS DE VERDAD */
+    #yesBtn {
       background-color: #ff4d6d;
       color: white;
       left: 50%;
-      transform: translateX(-50%) scale(1);
-      z-index: 2;
+      transform: translateX(-120px) scale(1);
     }
 
-    #no {
-      background-color: #e6e6e6;
-      color: #000;
-      left: 25%;
-      top: 110px;
-      z-index: 1;
+    #noBtn {
+      background-color: #ccc;
+      color: #333;
+      left: 50%;
+      transform: translateX(120px);
     }
 
-    #note {
-      position: absolute;
-      bottom: 20px;
-      font-size: 14px;
-      color: #777;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .final {
+    /* PANTALLA FINAL */
+    #final {
+      display: none;
       text-align: center;
     }
 
-    .send-btn {
-      margin-top: 20px;
-      padding: 14px 32px;
-      font-size: 18px;
-      border-radius: 10px;
-      border: none;
-      background-color: #ff4d6d;
-      color: white;
-      cursor: pointer;
+    #final h1 {
+      margin-bottom: 25px;
     }
 
-    /*
-      Made with intention, no expectation, just a little hope. This felt worth trying. If you're reading this, hi, G. ❤️
-    */
+    #sendBtn {
+      position: static;
+      padding: 14px 36px;
+      font-size: 18px;
+      background-color: #25D366;
+      color: white;
+      border-radius: 30px;
+      cursor: pointer;
+      border: none;
+    }
   </style>
 </head>
+
 <body>
 
-  <h1>Hi Greta,<br>will you be my Valentine?</h1>
-
-  <div class="buttons">
-    <button id="yes">YES</button>
-    <button id="no">NO</button>
+  <!-- PANTALLA 1 -->
+  <div class="container" id="question">
+    <h1>Do you want to go on a date?</h1>
+    <button id="yesBtn">Yes</button>
+    <button id="noBtn">No</button>
   </div>
 
-  <div id="note">Now “no” seems a bit shy.</div>
+  <!-- PANTALLA 2 -->
+  <div class="container" id="final">
+    <h1>Knew it. Then it’s a date 💌</h1>
+    <button id="sendBtn">Send</button>
+  </div>
 
   <script>
-    const yesBtn = document.getElementById("yes");
-    const noBtn = document.getElementById("no");
-    const note = document.getElementById("note");
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+    const question = document.getElementById("question");
+    const final = document.getElementById("final");
+    const sendBtn = document.getElementById("sendBtn");
 
     let scale = 1;
 
-    function growYes() {
-      scale += 0.35;
-      yesBtn.style.transform = `translateX(-50%) scale(${scale})`;
-      note.style.opacity = 1;
-    }
+    // NO huye, YES crece sin límite
+    noBtn.addEventListener("mouseenter", () => {
+      const x = Math.random() * 300 - 150;
+      const y = Math.random() * 200 - 100;
+      noBtn.style.transform = `translate(${x}px, ${y}px)`;
 
-    function moveNo() {
-      const x = Math.random() * 75;
-      const y = Math.random() * 180;
-      noBtn.style.left = x + "%";
-      noBtn.style.top = y + "px";
-    }
-
-    noBtn.addEventListener("mouseover", () => {
-      moveNo();
-      growYes();
+      scale += 0.18;
+      yesBtn.style.transform = `translateX(-120px) scale(${scale})`;
     });
 
-    noBtn.addEventListener("click", () => {
-      moveNo();
-      growYes();
-    });
-
+    // Cambio de pantalla
     yesBtn.addEventListener("click", () => {
-      document.body.innerHTML = `
-        <div class="final">
-          <h1>Then it’s a date 💌</h1>
-          <button class="send-btn" id="sendBtn">Send</button>
-        </div>
-      `;
+      question.style.display = "none";
+      final.style.display = "block";
+    });
 
-      document.getElementById("sendBtn").addEventListener("click", () => {
-        const message = encodeURIComponent("It’s a date 💌");
-        window.location.href = "https://wa.me/524921262438?text=" + message;
-      });
+    // WhatsApp (solo "It's a date")
+    sendBtn.addEventListener("click", () => {
+      const message = encodeURIComponent("It’s a date 💌");
+      window.location.href = "https://wa.me/524921262438?text=" + message;
     });
   </script>
 
