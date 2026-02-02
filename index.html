@@ -29,7 +29,7 @@
       position: relative;
       width: 100%;
       max-width: 500px;
-      height: 340px;
+      height: 360px; /* un pelín más alto */
     }
 
     h1 {
@@ -38,7 +38,7 @@
     }
 
     .hint {
-      margin-top: 120px;
+      margin-top: 150px; /* 👈 AQUÍ está el único ajuste */
       font-size: 14px;
       color: #999;
       font-style: italic;
@@ -101,7 +101,7 @@
     <button id="yesBtn">Yes</button>
     <button id="noBtn">No</button>
 
-    <div class="hint">No seems to be a bit shy😈</div>
+    <div class="hint">No seems to be a bit shy 😈</div>
   </div>
 
   <!-- PANTALLA 2 -->
@@ -119,13 +119,12 @@
 
     let scale = 1;
 
-    // NO huye / YES se vuelve GIGANTE
     noBtn.addEventListener("mouseenter", () => {
       const x = Math.random() * 500 - 250;
       const y = Math.random() * 350 - 175;
       noBtn.style.transform = `translate(${x}px, ${y}px)`;
 
-      scale += 0.6; // 🔥🔥 crecimiento exagerado
+      scale += 0.6;
       yesBtn.style.transform = `translateX(-120px) scale(${scale})`;
     });
 
