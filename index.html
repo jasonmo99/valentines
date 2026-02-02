@@ -90,14 +90,14 @@
 
   <!-- PANTALLA 1 -->
   <div class="container" id="question">
-    <h1>Do you want to go on a date?</h1>
+    <h1>Do you want to be my Valentine?</h1>
     <button id="yesBtn">Yes</button>
     <button id="noBtn">No</button>
   </div>
 
   <!-- PANTALLA 2 -->
   <div class="container" id="final">
-    <h1>Then it’s a date 💌❤️</h1>
+    <h1>Knew it. 😅 Then it’s a date 💌❤️</h1>
     <button id="sendBtn">Send</button>
   </div>
 
@@ -128,7 +128,7 @@
 
     // WhatsApp
     sendBtn.addEventListener("click", () => {
-      const message = encodeURIComponent("It’s a date 💌❤️");
+      const message = encodeURIComponent("It’s a date 💌");
       window.location.href =
         "https://wa.me/524921262438?text=" + message;
     });
