@@ -29,7 +29,7 @@
       position: relative;
       width: 100%;
       max-width: 500px;
-      height: 360px; /* un pelín más alto */
+      height: 360px;
     }
 
     h1 {
@@ -37,11 +37,16 @@
       margin-bottom: 60px;
     }
 
+    /* 👇 SOLO ESTO CAMBIÓ */
     .hint {
-      margin-top: 150px; /* 👈 AQUÍ está el único ajuste */
+      position: absolute;
+      bottom: 20px;   /* más abajo, pero no pegado */
+      left: 50%;
+      transform: translateX(-50%);
       font-size: 14px;
       color: #999;
       font-style: italic;
+      pointer-events: none;
     }
 
     button {
@@ -96,7 +101,7 @@
 
   <!-- PANTALLA 1 -->
   <div class="container" id="question">
-    <h1>Greta, Will you be my Valentine?</h1>
+    <h1>Hi Greta, Will you be my Valentine?</h1>
 
     <button id="yesBtn">Yes</button>
     <button id="noBtn">No</button>
