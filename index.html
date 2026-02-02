@@ -21,6 +21,7 @@
       align-items: center;
       justify-content: center;
       background: #fff;
+      overflow: hidden;
     }
 
     .container {
@@ -28,12 +29,19 @@
       position: relative;
       width: 100%;
       max-width: 500px;
-      height: 320px;
+      height: 340px;
     }
 
     h1 {
       font-size: 2.2rem;
-      margin-bottom: 70px;
+      margin-bottom: 60px;
+    }
+
+    .hint {
+      margin-top: 120px;
+      font-size: 14px;
+      color: #999;
+      font-style: italic;
     }
 
     button {
@@ -46,13 +54,12 @@
       transition: all 0.2s ease;
     }
 
-    /* BOTONES */
     #yesBtn {
       background-color: #ff4d6d;
       color: white;
       left: 50%;
       transform: translateX(-120px) scale(1);
-      z-index: 2;
+      z-index: 5;
     }
 
     #noBtn {
@@ -60,10 +67,9 @@
       color: #333;
       left: 50%;
       transform: translateX(120px);
-      z-index: 1;
+      z-index: 2;
     }
 
-    /* PANTALLA FINAL */
     #final {
       display: none;
       text-align: center;
@@ -90,14 +96,17 @@
 
   <!-- PANTALLA 1 -->
   <div class="container" id="question">
-    <h1>Do you want to be my Valentine?</h1>
+    <h1>Greta, Will you be my Valentine?</h1>
+
     <button id="yesBtn">Yes</button>
     <button id="noBtn">No</button>
+
+    <div class="hint">No seems to be a bit shy😈</div>
   </div>
 
   <!-- PANTALLA 2 -->
   <div class="container" id="final">
-    <h1>Knew it. 😅 Then it’s a date 💌❤️</h1>
+    <h1>Knew it. Then it’s a date 💌❤️</h1>
     <button id="sendBtn">Send</button>
   </div>
 
@@ -110,23 +119,21 @@
 
     let scale = 1;
 
-    // NO huye, YES crece de forma exagerada
+    // NO huye / YES se vuelve GIGANTE
     noBtn.addEventListener("mouseenter", () => {
-      const x = Math.random() * 400 - 200;
-      const y = Math.random() * 300 - 150;
+      const x = Math.random() * 500 - 250;
+      const y = Math.random() * 350 - 175;
       noBtn.style.transform = `translate(${x}px, ${y}px)`;
 
-      scale += 0.4; // 🔥 crecimiento agresivo real
+      scale += 0.6; // 🔥🔥 crecimiento exagerado
       yesBtn.style.transform = `translateX(-120px) scale(${scale})`;
     });
 
-    // Cambio a pantalla final
     yesBtn.addEventListener("click", () => {
       question.style.display = "none";
       final.style.display = "block";
     });
 
-    // WhatsApp
     sendBtn.addEventListener("click", () => {
       const message = encodeURIComponent("It’s a date 💌");
       window.location.href =
